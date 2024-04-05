@@ -207,6 +207,8 @@ if __name__ == "__main__":
 Ainda usando a PokeAPI, crie e retorne um dataframe com os dados dos 50 
 primeiros pokémons, incluindo, nome, peso, altura e tipo. 
 
+<img src="images_readme/Captura de tela 2024-04-05 202610.png" alt="Tabela Excel">
+
 
 ````
 import pandas as pd
