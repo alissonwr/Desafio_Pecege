@@ -58,12 +58,29 @@ SELECT COUNT(DISTINCT origin_registration_id) AS count_origin_registration, new_
     ORDER BY new_status
 ````
 
+A query fornecida possui alguns erros que foram corrigidos. Abaixo estão os erros identificados e suas correções:
+
+1. **Uso incorreto de `==` em vez de `IN`:**
+   O operador `==` é usado para verificar a igualdade entre duas expressões. No entanto, para verificar se uma coluna está em um conjunto de valores, devemos usar a cláusula `IN`. Portanto, o trecho `new_status == (1, 2, 3, 4, 5, 6)` foi corrigido para `new_status IN (1, 2, 3, 4, 5, 6)`.
+
+2. **Vírgula extra após a lista de colunas no `SELECT`:**
+   Na declaração `SELECT`, não deve haver uma vírgula após a última coluna da lista de seleção. Portanto, a vírgula após `distinct origin_registration_id` foi removida.
+
+3. **Ordem incorreta das cláusulas `GROUP BY` e `ORDER BY`:**
+   A cláusula `GROUP BY` deve ser especificada antes da cláusula `ORDER BY`. Portanto, a ordem das cláusulas `GROUP BY` e `ORDER BY` foram trocadas.
+
+4. **Utilização da expressão `AS count_origin_registration`:**
+   Não foi um erro do código, mas foi usada para atribuir um alias à função de agregação `COUNT(DISTINCT origin_registration_id)`. Quando uma função de agregação é usada em uma consulta SQL, o resultado normalmente não tem um nome associado diretamente, o que pode dificultar a identificação do que está sendo representado, especialmente em consultas mais complexas.
+
 ### Fase 2: Conexão à PokeAPI e Gráfico de Barras
 
 
 Conecte-se à PokeAPI através da biblioteca pokebase, e retorne em um gráfico de 
 barras, os dados de tipo dominante dos 100 primeiros pokémons disponíveis, de 
 forma a agrupá-los e mostrá-los em ordem decrescente. 
+
+<img src="images_readme/Captura de tela 2024-04-05 190105.png" alt="Gráfico">
+
 
 
 ````
